@@ -1,4 +1,3 @@
-
 /**
  * Login Class
  */
@@ -36,15 +35,40 @@ Login.prototype.login = function(_name, _email) {
 	
 	return sessionId;
 };
+/**
+ * Get Current name using current session id 
+ */
+Login.prototype.lastName = function(sessionId)
+{
+ return this.sessionMap[sessionId].name;
+};
+
+/**
+ * Get Current name using current session id  
+ */
+Login.prototype.lastEmail = function(sessionId)
+{
+ return this.sessionMap[sessionId].email;
+};
+
+/**
+ * Removing the old session id after refreshing session from SessionMap
+ **/
+Login.prototype.removeoldsessionid = function(sessionId)
+{
+	// Delete the old session id from sessionMap 
+	delete this.sessionMap[sessionId];
+	return "done";
+};
 
 /**
  * Logout from the server
  */ 
 Login.prototype.logout = function(sessionId) {
-	console.log('logout::' + sessionId);
-   /*
-	* TODO: Remove the given sessionId from the sessionMap
-	*/
+	//deleting the session id after logout
+	delete this.sessionMap[sessionId];
+	
+  
 };
 
 // Export the Login class
